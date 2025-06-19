@@ -5,7 +5,8 @@ import { useTheme } from '../context/ThemeContext'
 
 const ContactSection = styled(motion.section)`
   padding: 4rem 0;
-  background-color: ${props => props.isDarkMode ? '#1a1a1a' : '#ffffff'};
+  background-color: ${props => props.isDarkMode ? '#23272f' : '#f5f6fa'};
+  min-height: 100vh;
   transition: background-color 0.3s ease;
 `
 

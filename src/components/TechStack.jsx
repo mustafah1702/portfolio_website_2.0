@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext'
 
 const TechStackSection = styled(motion.section)`
   padding: 4rem 0;
-  background-color: ${props => props.isDarkMode ? '#1a1a1a' : '#f8f9fa'};
+  background-color: #fff;
   transition: background-color 0.3s ease;
 `
 

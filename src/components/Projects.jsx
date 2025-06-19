@@ -1,196 +1,121 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
-import { FaGithub, FaExternalLinkAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { gsap } from 'gsap'
 import { useTheme } from '../context/ThemeContext'
+import styled from 'styled-components'
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { Carousel } from 'antd'
+import 'antd/dist/reset.css'
 
-const ProjectsSection = styled(motion.section)`
+const ProjectsSection = styled.section`
   padding: 4rem 0;
-  background-color: ${props => props.isDarkMode ? '#1a1a1a' : '#ffffff'};
+  background-color: ${props => props.isDarkMode ? '#23272f' : '#f5f6fa'};
   min-height: 100vh;
+`
+
+const contentStyle = {
+  margin: 0,
+  minHeight: '520px',
+  height: '60vh',
+  color: '#fff',
+  textAlign: 'center',
+  background: '#0cb3eb',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
+  width: '100%',
+  maxWidth: '100%',
+}
+
+const ProjectCard = styled.div`
+  background: transparent;
+  padding: 0;
+  min-width: 300px;
+  max-width: 400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: background-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  justify-content: center;
 `
 
-const ProjectsContainer = styled.div`
-  max-width: 1200px;
+const ProjectImage = styled.div`
   width: 100%;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  height: 600px;
-`
-
-const ProjectsWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
+  height: 120px;
+  margin-bottom: 0.7rem;
   display: flex;
   align-items: center;
-`
-
-const ProjectsTrack = styled.div`
-  position: absolute;
-  display: flex;
-  gap: 2rem;
-  will-change: transform;
-  left: 50%;
-  transform: translateX(-50%);
-`
-
-const ProjectCard = styled(motion.div)`
-  background: ${props => props.isDarkMode ? '#ffffff' : '#ffffff'};
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 12px 40px rgba(9, 132, 227, 0.4);
-  width: 400px;
-  height: 500px;
-  flex-shrink: 0;
-  border: 3px solid #0984e3;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 50px rgba(9, 132, 227, 0.6);
-    border-color: #74b9ff;
-    background: ${props => props.isDarkMode ? '#ffffff' : '#ffffff'};
-  }
-`
-
-const ProjectImage = styled(motion.div)`
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  position: relative;
-
+  justify-content: center;
   img {
-    width: 100%;
+    width: 90%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
-`
-
-const ProjectContent = styled.div`
-  padding: 1.5rem;
 `
 
 const ProjectTitle = styled.h3`
-  color: #0984e3;
-  font-size: 1.8rem;
-  margin-bottom: 0.8rem;
-  font-weight: 800;
-  transition: color 0.3s ease;
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const ProjectDescription = styled.p`
-  color: ${props => props.isDarkMode ? '#000000' : '#000000'};
-  margin-bottom: 1.2rem;
-  line-height: 1.6;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  color: #e0e0e0;
+  margin-bottom: 0.7rem;
+  line-height: 1.3;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `
 
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.3rem;
+  margin-bottom: 0.7rem;
+  justify-content: center;
 `
 
 const Tech = styled.span`
-  color: #ffffff;
-  font-size: 1rem;
+  color: #fff;
+  font-size: 0.7rem;
   background: #0984e3;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(9, 132, 227, 0.3);
-
-  &:hover {
-    background: #74b9ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.4);
-  }
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
 `
 
 const ProjectLinks = styled.div`
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 0.7rem;
 `
 
-const ProjectLink = styled(motion.a)`
-  color: #0984e3;
-  font-size: 1.4rem;
-  transition: all 0.3s ease;
-  background: rgba(9, 132, 227, 0.1);
-  padding: 0.5rem;
+const ProjectLink = styled.a`
+  color: #fff;
+  font-size: 1.2rem;
+  background: rgba(9, 132, 227, 0.2);
+  padding: 0.4rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  transition: background 0.2s;
   &:hover {
-    color: #ffffff;
     background: #0984e3;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(9, 132, 227, 0.4);
-  }
-`
-
-const NavigationButton = styled(motion.button)`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #0984e3;
-  border: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(9, 132, 227, 0.4);
-  transition: all 0.3s ease;
-
-  &:hover:not(:disabled) {
-    background: #74b9ff;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 16px rgba(9, 132, 227, 0.6);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    background: #b2bec3;
-  }
-
-  &.prev {
-    left: 1rem;
-  }
-
-  &.next {
-    right: 1rem;
+    color: #fff;
   }
 `
 
 const Projects = () => {
   const { isDarkMode } = useTheme()
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const trackRef = useRef(null)
-  const projectsRef = useRef([])
   const projectsData = [
     {
       title: "E-Commerce Platform",
@@ -234,132 +159,55 @@ const Projects = () => {
     }
   ]
 
-  useEffect(() => {
-    // Initialize GSAP animations for each project card
-    projectsRef.current.forEach((project, index) => {
-      gsap.from(project, {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: "power2.out"
-      })
-    })
-
-    // Set initial position
-    gsap.set(trackRef.current, {
-      x: 0
-    })
-  }, [])
-
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      const newIndex = currentIndex - 1
-      setCurrentIndex(newIndex)
-      gsap.to(trackRef.current, {
-        x: newIndex * -(400 + 32), // 400px card width + 32px gap
-        duration: 0.8,
-        ease: "power2.inOut"
-      })
-    }
-  }
-
-  const handleNext = () => {
-    if (currentIndex < projectsData.length - 1) {
-      const newIndex = currentIndex + 1
-      setCurrentIndex(newIndex)
-      gsap.to(trackRef.current, {
-        x: newIndex * -(400 + 32), // 400px card width + 32px gap
-        duration: 0.8,
-        ease: "power2.inOut"
-      })
-    }
-  }
+  const onChange = currentSlide => {
+    console.log(currentSlide);
+  };
 
   return (
-    <ProjectsSection
-      isDarkMode={isDarkMode}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        style={{ color: '#0984e3', textAlign: 'center', marginBottom: '2rem' }}
-      >
+    <ProjectsSection isDarkMode={isDarkMode}>
+      <h2 style={{ color: '#0984e3', textAlign: 'center', marginBottom: '2rem' }}>
         Projects
-      </motion.h2>
-      <ProjectsContainer>
-        <ProjectsWrapper>
-          <ProjectsTrack ref={trackRef}>
-            {projectsData.map((project, index) => (
-              <ProjectCard
-                key={index}
-                ref={el => projectsRef.current[index] = el}
-                isDarkMode={isDarkMode}
-                style={{ opacity: 1 }}
-              >
-                <ProjectImage>
-                  <img src={project.image} alt={project.title} />
-                </ProjectImage>
-                <ProjectContent>
-                  <ProjectTitle isDarkMode={isDarkMode}>{project.title}</ProjectTitle>
-                  <ProjectDescription isDarkMode={isDarkMode}>{project.description}</ProjectDescription>
+      </h2>
+      <div style={{ width: '80vw', maxWidth: '1200px', margin: '0 auto' }}>
+        <Carousel arrows={true} afterChange={onChange} dots>
+          {projectsData.map((project, index) => (
+            <div key={index}>
+              <div style={contentStyle}>
+                <ProjectCard style={{ width: '100%', maxWidth: 700 }}>
+                  <ProjectImage>
+                    <img src={project.image} alt={project.title} loading="lazy" />
+                  </ProjectImage>
+                  <ProjectTitle>{project.title}</ProjectTitle>
+                  <ProjectDescription>
+                    {project.description}
+                  </ProjectDescription>
                   <TechStack>
                     {project.tech.map((tech, i) => (
-                      <Tech key={i} isDarkMode={isDarkMode}>{tech}</Tech>
+                      <Tech key={i}>{tech}</Tech>
                     ))}
                   </TechStack>
                   <ProjectLinks>
                     <ProjectLink 
-                      isDarkMode={isDarkMode}
                       href={project.github} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      whileHover={{ y: -3 }}
                     >
                       <FaGithub />
                     </ProjectLink>
                     <ProjectLink 
-                      isDarkMode={isDarkMode}
                       href={project.live} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      whileHover={{ y: -3 }}
                     >
                       <FaExternalLinkAlt />
                     </ProjectLink>
                   </ProjectLinks>
-                </ProjectContent>
-              </ProjectCard>
-            ))}
-          </ProjectsTrack>
-          <NavigationButton
-            isDarkMode={isDarkMode}
-            className="prev"
-            onClick={handlePrev}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            disabled={currentIndex === 0}
-          >
-            <FaChevronLeft />
-          </NavigationButton>
-          <NavigationButton
-            isDarkMode={isDarkMode}
-            className="next"
-            onClick={handleNext}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            disabled={currentIndex === projectsData.length - 1}
-          >
-            <FaChevronRight />
-          </NavigationButton>
-        </ProjectsWrapper>
-      </ProjectsContainer>
+                </ProjectCard>
+              </div>
+            </div>
+          ))}
+        </Carousel>
+      </div>
     </ProjectsSection>
   )
 }
