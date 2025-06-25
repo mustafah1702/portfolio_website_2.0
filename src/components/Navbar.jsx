@@ -22,6 +22,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `
 
 const Logo = styled.h1`
@@ -33,6 +34,8 @@ const Logo = styled.h1`
 const NavLinks = styled.div`
   display: flex;
   gap: 2rem;
+  flex: 1;
+  justify-content: center;
 `
 
 const NavLink = styled(motion.a)`
@@ -86,7 +89,7 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
     >
       <Nav>
-        <Logo>MH</Logo>
+        {/* <Logo>MH</Logo> */}
         <NavLinks>
           <NavLink 
             isDarkMode={isDarkMode}

@@ -104,8 +104,8 @@ const Experience = () => {
   const experienceData = [
     {
       company: "Canadian Tire",
-      position: "Software Engineer",
-      date: "2022 - Present",
+      position: "Automation Software Developer",
+      date: "January 2023 - April 2023",
       logo: "/images/canadian-tire-logo.png",
       description: [
         "Developed and maintained web applications using React.js and Node.js",
@@ -116,8 +116,8 @@ const Experience = () => {
     },
     {
       company: "Magna International",
-      position: "Junior Developer",
-      date: "2020 - 2022",
+      position: "Software Engineer Intern",
+      date: "September 2023 - December 2024",
       logo: "/images/magna-logo.png",
       description: [
         "Assisted in developing and testing web applications",

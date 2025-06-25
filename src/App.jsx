@@ -65,9 +65,9 @@ const App = () => {
   return (
     <ThemeProvider>
       <AppContainer>
+      <Navbar />
         <SmoothScrollWrapper id="smooth-wrapper">
           <SmoothScrollContent id="smooth-content" ref={contentRef}>
-            <Navbar />
             <Hero />
             <About />
             <Experience />

@@ -66,17 +66,11 @@ const Education = () => {
   const { isDarkMode } = useTheme()
   const educationData = [
     {
-      title: "Bachelor of Science in Computer Science",
-      school: "University Name",
-      date: "2018 - 2022",
-      description: "Relevant coursework in Data Structures, Algorithms, Web Development, and Software Engineering."
+      title: "Bachelor of Science in Computer Science (Honours)",
+      school: "Toronto Metropolitan University",
+      date: "2020 - 2025",
+      description: "Graduated with a 3.72 CGPA and Dean's Distinction List."
     },
-    {
-      title: "High School Diploma",
-      school: "High School Name",
-      date: "2014 - 2018",
-      description: "Graduated with honors. Participated in various coding competitions and tech clubs."
-    }
   ]
 
   return (
