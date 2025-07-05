@@ -41,8 +41,12 @@ const AboutText = styled.div`
 const AboutImage = styled(motion.div)`
   img {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    height: 400px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    object-position: center;
   }
 `
 
@@ -51,6 +55,7 @@ const About = () => {
 
   return (
     <AboutSection
+      id="about"
       isDarkMode={isDarkMode}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +81,7 @@ const About = () => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         >
-          <img src="/your-image.jpg" alt="Profile" />
+          <img src="/images/photo.jpeg" alt="Profile" />
         </AboutImage>
       </AboutContent>
     </AboutSection>

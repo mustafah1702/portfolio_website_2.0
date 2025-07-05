@@ -164,7 +164,7 @@ const Projects = () => {
   };
 
   return (
-    <ProjectsSection isDarkMode={isDarkMode}>
+    <ProjectsSection id="projects" isDarkMode={isDarkMode}>
       <h2 style={{ color: '#0984e3', textAlign: 'center', marginBottom: '2rem' }}>
         Projects
       </h2>

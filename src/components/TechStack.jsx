@@ -62,6 +62,7 @@ const TechStack = () => {
 
   return (
     <TechStackSection
+      id="tech-stack"
       isDarkMode={isDarkMode}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

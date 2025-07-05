@@ -51,6 +51,11 @@ const CompanyLogo = styled(motion.div)`
     max-height: 80%;
     object-fit: contain;
   }
+
+  img[src*="magna-logo"] {
+    max-width: 180%;
+    max-height: 180%;
+  }
 `
 
 const CompanyName = styled.h3`
@@ -134,6 +139,7 @@ const Experience = () => {
 
   return (
     <ExperienceSection
+      id="experience"
       isDarkMode={isDarkMode}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

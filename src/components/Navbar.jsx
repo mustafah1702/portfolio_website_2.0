@@ -73,10 +73,16 @@ const Navbar = () => {
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-      // Use GSAP ScrollSmoother to scroll
-      const smoother = window.ScrollSmoother.get()
+      // Try to use GSAP ScrollSmoother first, fallback to regular scrolling
+      const smoother = window.ScrollSmoother?.get()
       if (smoother) {
         smoother.scrollTo(element, true, 'center center')
+      } else {
+        // Fallback to regular smooth scrolling
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
       }
     }
   }
@@ -101,19 +107,19 @@ const Navbar = () => {
           </NavLink>
           <NavLink 
             isDarkMode={isDarkMode}
-            href="#education" 
-            onClick={(e) => scrollToSection(e, 'education')}
-            whileHover={{ y: -2 }}
-          >
-            Education
-          </NavLink>
-          <NavLink 
-            isDarkMode={isDarkMode}
             href="#experience" 
             onClick={(e) => scrollToSection(e, 'experience')}
             whileHover={{ y: -2 }}
           >
             Experience
+          </NavLink>
+          <NavLink 
+            isDarkMode={isDarkMode}
+            href="#education" 
+            onClick={(e) => scrollToSection(e, 'education')}
+            whileHover={{ y: -2 }}
+          >
+            Education
           </NavLink>
           <NavLink 
             isDarkMode={isDarkMode}
