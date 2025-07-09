@@ -30,6 +30,24 @@ const HeroTitle = styled(motion.h1)`
   }
 `
 
+const Caret = styled.span`
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background-color: #0984e3;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+  
+  @keyframes blink {
+    0%, 50% {
+      opacity: 1;
+    }
+    51%, 100% {
+      opacity: 0;
+    }
+  }
+`
+
 const HeroSubtitle = styled(motion.p)`
   font-size: 1.5rem;
   color: #0984e3;
@@ -40,9 +58,51 @@ const HeroDescription = styled(motion.p)`
   font-size: 1.2rem;
   color: ${props => props.isDarkMode ? '#b2bec3' : '#636e72'};
   max-width: 600px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
   line-height: 1.6;
   transition: color 0.3s ease;
+`
+
+const HeroHighlights = styled(motion.div)`
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+`
+
+const HighlightItem = styled(motion.div)`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  font-size: 1rem;
+  color: ${props => props.isDarkMode ? '#b2bec3' : '#636e72'};
+  transition: color 0.3s ease;
+  flex: 1;
+  max-width: 300px;
+  text-align: left;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: none;
+  }
+`
+
+const HighlightIcon = styled.span`
+  font-size: 1.3rem;
+  min-width: 30px;
+  text-align: center;
 `
 
 const ScrollIndicator = styled(motion.div)`
@@ -99,9 +159,15 @@ const Hero = () => {
   const { isDarkMode } = useTheme()
 
   const scrollToAbout = () => {
-    const smoother = window.ScrollSmoother.get()
-    if (smoother) {
-      smoother.scrollTo('#about', true, 'center center')
+    const element = document.getElementById('about')
+    if (element) {
+      const headerOffset = 100
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'auto'
+      })
     }
   }
 
@@ -119,7 +185,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Hi, I'm Mustafa Hasan
+          Hi, I'm Mustafa Hasan<Caret />
         </HeroTitle>
         <HeroSubtitle
           initial={{ y: 20, opacity: 0 }}
@@ -134,21 +200,62 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          I build exceptional digital experiences that make an impact.
-          Specializing in creating beautiful, functional, and user-centered websites.
+          I'm a versatile software developer with hands-on experience in AI, full-stack development, and automation—driven by a passion for building practical, scalable tech solutions.
         </HeroDescription>
+        
+        <HeroHighlights
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <HighlightItem
+            isDarkMode={isDarkMode}
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            <HighlightIcon>💼</HighlightIcon>
+            <span><strong>2+ Years Industry Experience</strong><br />
+            Worked at Canadian Tire, Magna International, and Outlier building real-world software.</span>
+          </HighlightItem>
+          
+          <HighlightItem
+            isDarkMode={isDarkMode}
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+          >
+            <HighlightIcon>🚀</HighlightIcon>
+            <span><strong>Built AI & Automation Projects</strong><br />
+            From self-driving cars to workflow bots—practical, innovative tech.</span>
+          </HighlightItem>
+          
+          <HighlightItem
+            isDarkMode={isDarkMode}
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
+          >
+            <HighlightIcon>📍</HighlightIcon>
+            <span><strong>Based in Toronto, Canada</strong><br />
+            Open to remote/hybrid/onsite roles across North America.</span>
+          </HighlightItem>
+        </HeroHighlights>
       </HeroContent>
+      
       <ScrollIndicator
         isDarkMode={isDarkMode}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 1.6 }}
         onClick={scrollToAbout}
         style={{ cursor: 'pointer' }}
       >
+        <ScrollText>Scroll to explore</ScrollText>
+        <ScrollIcon />
       </ScrollIndicator>
     </HeroSection>
   )
 }
 
-export default Hero 
+export default Hero

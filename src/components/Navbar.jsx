@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { useTheme } from '../context/ThemeContext'
 import ThemeToggle from './ThemeToggle'
+import { useState } from 'react'
+import Resume from './Resume'
 
 const Header = styled(motion.header)`
   position: fixed;
@@ -64,6 +66,7 @@ const NavLink = styled(motion.a)`
 
 const Navbar = () => {
   const { isDarkMode } = useTheme()
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
 
   const scrollToSection = (e, sectionId) => {
     e.preventDefault()
@@ -73,82 +76,93 @@ const Navbar = () => {
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
-      // Try to use GSAP ScrollSmoother first, fallback to regular scrolling
-      const smoother = window.ScrollSmoother?.get()
-      if (smoother) {
-        smoother.scrollTo(element, true, 'center center')
-      } else {
-        // Fallback to regular smooth scrolling
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        })
-      }
+      // Regular instant scrolling
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'auto'
+      })
     }
   }
 
+  const openResume = (e) => {
+    e.preventDefault()
+    setIsResumeOpen(true)
+  }
+
   return (
-    <Header
-      isDarkMode={isDarkMode}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Nav>
-        {/* <Logo>MH</Logo> */}
-        <NavLinks>
-          <NavLink 
-            isDarkMode={isDarkMode}
-            href="#about" 
-            onClick={(e) => scrollToSection(e, 'about')}
-            whileHover={{ y: -2 }}
-          >
-            About
-          </NavLink>
-          <NavLink 
-            isDarkMode={isDarkMode}
-            href="#experience" 
-            onClick={(e) => scrollToSection(e, 'experience')}
-            whileHover={{ y: -2 }}
-          >
-            Experience
-          </NavLink>
-          <NavLink 
-            isDarkMode={isDarkMode}
-            href="#education" 
-            onClick={(e) => scrollToSection(e, 'education')}
-            whileHover={{ y: -2 }}
-          >
-            Education
-          </NavLink>
-          <NavLink 
-            isDarkMode={isDarkMode}
-            href="#projects" 
-            onClick={(e) => scrollToSection(e, 'projects')}
-            whileHover={{ y: -2 }}
-          >
-            Projects
-          </NavLink>
-          <NavLink 
-            isDarkMode={isDarkMode}
-            href="#tech-stack" 
-            onClick={(e) => scrollToSection(e, 'tech-stack')}
-            whileHover={{ y: -2 }}
-          >
-            Tech Stack
-          </NavLink>
-          <NavLink 
-            isDarkMode={isDarkMode}
-            href="#contact" 
-            onClick={(e) => scrollToSection(e, 'contact')}
-            whileHover={{ y: -2 }}
-          >
-            Contact
-          </NavLink>
-        </NavLinks>
-        <ThemeToggle />
-      </Nav>
-    </Header>
+    <>
+      <Header
+        isDarkMode={isDarkMode}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Nav>
+          {/* <Logo>MH</Logo> */}
+          <NavLinks>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#about" 
+              onClick={(e) => scrollToSection(e, 'about')}
+              whileHover={{ y: -2 }}
+            >
+              About
+            </NavLink>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#experience" 
+              onClick={(e) => scrollToSection(e, 'experience')}
+              whileHover={{ y: -2 }}
+            >
+              Experience
+            </NavLink>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#education" 
+              onClick={(e) => scrollToSection(e, 'education')}
+              whileHover={{ y: -2 }}
+            >
+              Education
+            </NavLink>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#projects" 
+              onClick={(e) => scrollToSection(e, 'projects')}
+              whileHover={{ y: -2 }}
+            >
+              Projects
+            </NavLink>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#tech-stack" 
+              onClick={(e) => scrollToSection(e, 'tech-stack')}
+              whileHover={{ y: -2 }}
+            >
+              Tech Stack
+            </NavLink>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#contact" 
+              onClick={(e) => scrollToSection(e, 'contact')}
+              whileHover={{ y: -2 }}
+            >
+              Contact
+            </NavLink>
+            <NavLink 
+              isDarkMode={isDarkMode}
+              href="#" 
+              onClick={openResume}
+              whileHover={{ y: -2 }}
+              style={{ color: '#0984e3', fontWeight: '600' }}
+            >
+              Resume
+            </NavLink>
+          </NavLinks>
+          <ThemeToggle />
+        </Nav>
+      </Header>
+      <Resume isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+    </>
   )
 }
 

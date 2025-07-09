@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { FaReact, FaNodeJs, FaDatabase, FaGitAlt, FaDocker } from 'react-icons/fa'
-import { SiJavascript, SiTypescript, SiPython, SiMongodb, SiPostgresql } from 'react-icons/si'
+import { FaReact, FaNodeJs, FaDatabase, FaGitAlt, FaDocker, FaGithub, FaLinux, FaCloud } from 'react-icons/fa'
+import { SiJavascript, SiPython, SiMongodb, SiTailwindcss, SiJenkins, SiJira } from 'react-icons/si'
 import { useTheme } from '../context/ThemeContext'
 
 const TechStackSection = styled(motion.section)`
@@ -16,11 +16,22 @@ const TechStackContent = styled.div`
   padding: 0 2rem;
 `
 
+const TechCategory = styled.div`
+  margin-bottom: 3rem;
+  
+  h3 {
+    color: #0984e3;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+`
+
 const TechGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 `
 
 const TechCard = styled(motion.div)`
@@ -47,17 +58,34 @@ const TechName = styled.h3`
 
 const TechStack = () => {
   const { isDarkMode } = useTheme()
-  const techData = [
-    { name: 'React', icon: <FaReact /> },
-    { name: 'Node.js', icon: <FaNodeJs /> },
-    { name: 'JavaScript', icon: <SiJavascript /> },
-    { name: 'TypeScript', icon: <SiTypescript /> },
+  
+  const programmingTech = [
     { name: 'Python', icon: <SiPython /> },
-    { name: 'MongoDB', icon: <SiMongodb /> },
-    { name: 'PostgreSQL', icon: <SiPostgresql /> },
-    { name: 'Git', icon: <FaGitAlt /> },
+    { name: 'Java', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Java</span> },
+    { name: 'JavaScript', icon: <SiJavascript /> },
+    { name: 'React.js', icon: <FaReact /> },
+    { name: 'Node.js', icon: <FaNodeJs /> },
+    { name: 'C', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>C</span> },
+    { name: 'C++', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>C++</span> },
+    { name: 'SQL', icon: <FaDatabase /> },
+    { name: 'Assembly', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>ASM</span> },
+    { name: 'HTML', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>HTML</span> },
+    { name: 'CSS', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>CSS</span> },
+    { name: 'Tailwind', icon: <SiTailwindcss /> },
+    { name: 'MongoDB', icon: <SiMongodb /> }
+  ]
+
+  const toolsTech = [
+    { name: 'Linux/Unix', icon: <FaLinux /> },
+    { name: 'Git Bash', icon: <FaGitAlt /> },
+    { name: 'GitHub', icon: <FaGithub /> },
+    { name: 'Azure', icon: <FaCloud /> },
+    { name: 'Jira', icon: <SiJira /> },
+    { name: 'Jenkins', icon: <SiJenkins /> },
     { name: 'Docker', icon: <FaDocker /> },
-    { name: 'Database', icon: <FaDatabase /> }
+    { name: 'DevOps', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>DevOps</span> },
+    { name: 'Scrum (Agile)', icon: <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>Scrum</span> },
+    { name: 'SDLC', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>SDLC</span> }
   ]
 
   return (
@@ -75,26 +103,64 @@ const TechStack = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ color: '#0984e3', textAlign: 'center' }}
+          style={{ color: '#0984e3', textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' }}
         >
           Tech Stack
         </motion.h2>
-        <TechGrid>
-          {techData.map((tech, index) => (
-            <TechCard
-              key={index}
-              isDarkMode={isDarkMode}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <TechIcon>{tech.icon}</TechIcon>
-              <TechName isDarkMode={isDarkMode}>{tech.name}</TechName>
-            </TechCard>
-          ))}
-        </TechGrid>
+        
+        <TechCategory>
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Programming Languages & Frameworks
+          </motion.h3>
+          <TechGrid>
+            {programmingTech.map((tech, index) => (
+              <TechCard
+                key={index}
+                isDarkMode={isDarkMode}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <TechIcon>{tech.icon}</TechIcon>
+                <TechName isDarkMode={isDarkMode}>{tech.name}</TechName>
+              </TechCard>
+            ))}
+          </TechGrid>
+        </TechCategory>
+
+        <TechCategory>
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Software Tools & Practices
+          </motion.h3>
+          <TechGrid>
+            {toolsTech.map((tech, index) => (
+              <TechCard
+                key={index}
+                isDarkMode={isDarkMode}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <TechIcon>{tech.icon}</TechIcon>
+                <TechName isDarkMode={isDarkMode}>{tech.name}</TechName>
+              </TechCard>
+            ))}
+          </TechGrid>
+        </TechCategory>
       </TechStackContent>
     </TechStackSection>
   )

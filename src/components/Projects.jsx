@@ -1,8 +1,7 @@
 import { useTheme } from '../context/ThemeContext'
 import styled from 'styled-components'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { Carousel } from 'antd'
-import 'antd/dist/reset.css'
+import { motion } from 'framer-motion'
 
 const ProjectsSection = styled.section`
   padding: 4rem 0;
@@ -10,107 +9,96 @@ const ProjectsSection = styled.section`
   min-height: 100vh;
 `
 
-const contentStyle = {
-  margin: 0,
-  minHeight: '520px',
-  height: '60vh',
-  color: '#fff',
-  textAlign: 'center',
-  background: '#0cb3eb',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.13)',
-  width: '100%',
-  maxWidth: '100%',
-}
-
-const ProjectCard = styled.div`
-  background: transparent;
-  padding: 0;
-  min-width: 300px;
-  max-width: 400px;
+const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 0 2rem;
+`
+
+const ProjectCard = styled(motion.div)`
+  background: ${props => props.isDarkMode ? '#2d3436' : '#ffffff'};
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 `
 
 const ProjectImage = styled.div`
   width: 100%;
-  height: 120px;
-  margin-bottom: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 200px;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  
   img {
-    width: 90%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 12px;
   }
 `
 
 const ProjectTitle = styled.h3`
-  color: #fff;
-  font-size: 1.2rem;
-  margin-bottom: 0.3rem;
+  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  transition: color 0.3s ease;
 `
 
 const ProjectDescription = styled.p`
-  color: #e0e0e0;
-  margin-bottom: 0.7rem;
-  line-height: 1.3;
-  font-size: 0.9rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: ${props => props.isDarkMode ? '#b2bec3' : '#636e72'};
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  transition: color 0.3s ease;
 `
 
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-bottom: 0.7rem;
-  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 `
 
 const Tech = styled.span`
-  color: #fff;
-  font-size: 0.7rem;
+  color: #ffffff;
+  font-size: 0.8rem;
   background: #0984e3;
-  padding: 0.15rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 500;
 `
 
 const ProjectLinks = styled.div`
   display: flex;
-  gap: 0.7rem;
-  justify-content: center;
-  margin-top: 0.7rem;
+  gap: 1rem;
+  justify-content: flex-start;
 `
 
-const ProjectLink = styled.a`
-  color: #fff;
+const ProjectLink = styled(motion.a)`
+  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
   font-size: 1.2rem;
-  background: rgba(9, 132, 227, 0.2);
-  padding: 0.4rem;
+  background: rgba(9, 132, 227, 0.1);
+  padding: 0.8rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  
   &:hover {
     background: #0984e3;
-    color: #fff;
+    color: #ffffff;
+    border-color: #0984e3;
+    transform: translateY(-2px);
   }
 `
 
@@ -159,55 +147,76 @@ const Projects = () => {
     }
   ]
 
-  const onChange = currentSlide => {
-    console.log(currentSlide);
-  };
-
   return (
     <ProjectsSection id="projects" isDarkMode={isDarkMode}>
-      <h2 style={{ color: '#0984e3', textAlign: 'center', marginBottom: '2rem' }}>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ color: '#0984e3', textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' }}
+      >
         Projects
-      </h2>
-      <div style={{ width: '80vw', maxWidth: '1200px', margin: '0 auto' }}>
-        <Carousel arrows={true} afterChange={onChange} dots>
-          {projectsData.map((project, index) => (
-            <div key={index}>
-              <div style={contentStyle}>
-                <ProjectCard style={{ width: '100%', maxWidth: 700 }}>
-                  <ProjectImage>
-                    <img src={project.image} alt={project.title} loading="lazy" />
-                  </ProjectImage>
-                  <ProjectTitle>{project.title}</ProjectTitle>
-                  <ProjectDescription>
-                    {project.description}
-                  </ProjectDescription>
-                  <TechStack>
-                    {project.tech.map((tech, i) => (
-                      <Tech key={i}>{tech}</Tech>
-                    ))}
-                  </TechStack>
-                  <ProjectLinks>
-                    <ProjectLink 
-                      href={project.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <FaGithub />
-                    </ProjectLink>
-                    <ProjectLink 
-                      href={project.live} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <FaExternalLinkAlt />
-                    </ProjectLink>
-                  </ProjectLinks>
-                </ProjectCard>
-              </div>
-            </div>
-          ))}
-        </Carousel>
-      </div>
+      </motion.h2>
+      <ProjectsGrid>
+        {projectsData.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
+            <ProjectCard
+              isDarkMode={isDarkMode}
+              whileHover={{ 
+                scale: 1.05,
+                y: -10,
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)"
+              }}
+              transition={{ 
+                duration: 0.3,
+                ease: "easeOut"
+              }}
+            >
+              <ProjectImage>
+                <img src={project.image} alt={project.title} loading="lazy" />
+              </ProjectImage>
+              <ProjectTitle isDarkMode={isDarkMode}>{project.title}</ProjectTitle>
+              <ProjectDescription isDarkMode={isDarkMode}>
+                {project.description}
+              </ProjectDescription>
+              <TechStack>
+                {project.tech.map((tech, i) => (
+                  <Tech key={i}>{tech}</Tech>
+                ))}
+              </TechStack>
+              <ProjectLinks>
+                <ProjectLink 
+                  isDarkMode={isDarkMode}
+                  href={project.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaGithub />
+                </ProjectLink>
+                <ProjectLink 
+                  isDarkMode={isDarkMode}
+                  href={project.live} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaExternalLinkAlt />
+                </ProjectLink>
+              </ProjectLinks>
+            </ProjectCard>
+          </motion.div>
+        ))}
+      </ProjectsGrid>
     </ProjectsSection>
   )
 }
