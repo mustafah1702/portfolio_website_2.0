@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { useTheme } from '../context/ThemeContext'
 
 const HeroSection = styled(motion.section)`
   min-height: 100vh;
@@ -8,8 +7,7 @@ const HeroSection = styled(motion.section)`
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
-  background-color: ${props => props.isDarkMode ? '#1a1a1a' : '#ffffff'};
-  transition: background-color 0.3s ease;
+  background-color: #ffffff;
 `
 
 const HeroContent = styled.div`
@@ -22,8 +20,7 @@ const HeroTitle = styled(motion.h1)`
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
-  transition: color 0.3s ease;
+  color: #2d3436;
 
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -56,11 +53,10 @@ const HeroSubtitle = styled(motion.p)`
 
 const HeroDescription = styled(motion.p)`
   font-size: 1.2rem;
-  color: ${props => props.isDarkMode ? '#b2bec3' : '#636e72'};
+  color: #636e72;
   max-width: 600px;
   margin: 0 auto 2rem;
   line-height: 1.6;
-  transition: color 0.3s ease;
 `
 
 const HeroHighlights = styled(motion.div)`
@@ -84,8 +80,7 @@ const HighlightItem = styled(motion.div)`
   justify-content: flex-start;
   gap: 0.8rem;
   font-size: 1rem;
-  color: ${props => props.isDarkMode ? '#b2bec3' : '#636e72'};
-  transition: color 0.3s ease;
+  color: #636e72;
   flex: 1;
   max-width: 300px;
   text-align: left;
@@ -114,8 +109,7 @@ const ScrollIndicator = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
-  transition: color 0.3s ease;
+  color: #2d3436;
 `
 
 const ScrollText = styled.span`
@@ -156,8 +150,6 @@ const ScrollIcon = styled(motion.div)`
 `
 
 const Hero = () => {
-  const { isDarkMode } = useTheme()
-
   const scrollToAbout = () => {
     const element = document.getElementById('about')
     if (element) {
@@ -173,14 +165,12 @@ const Hero = () => {
 
   return (
     <HeroSection
-      isDarkMode={isDarkMode}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <HeroContent>
         <HeroTitle
-          isDarkMode={isDarkMode}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -195,7 +185,6 @@ const Hero = () => {
           Software Engineer
         </HeroSubtitle>
         <HeroDescription
-          isDarkMode={isDarkMode}
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -209,7 +198,6 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <HighlightItem
-            isDarkMode={isDarkMode}
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.0 }}
@@ -220,7 +208,6 @@ const Hero = () => {
           </HighlightItem>
           
           <HighlightItem
-            isDarkMode={isDarkMode}
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
@@ -231,7 +218,6 @@ const Hero = () => {
           </HighlightItem>
           
           <HighlightItem
-            isDarkMode={isDarkMode}
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.4 }}
@@ -244,7 +230,6 @@ const Hero = () => {
       </HeroContent>
       
       <ScrollIndicator
-        isDarkMode={isDarkMode}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6 }}

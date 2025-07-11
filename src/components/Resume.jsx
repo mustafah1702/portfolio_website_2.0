@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import { FaTimes, FaDownload } from 'react-icons/fa'
-import { useTheme } from '../context/ThemeContext'
 
 const ResumeModal = styled(motion.div)`
   position: fixed;
@@ -18,7 +17,7 @@ const ResumeModal = styled(motion.div)`
 `
 
 const ModalContent = styled(motion.div)`
-  background: ${props => props.isDarkMode ? '#2d3436' : '#ffffff'};
+  background: #ffffff;
   border-radius: 12px;
   width: 100%;
   max-width: 1000px;
@@ -34,18 +33,18 @@ const ModalHeader = styled.div`
   left: 0;
   right: 0;
   height: 60px;
-  background: ${props => props.isDarkMode ? 'rgba(45, 52, 54, 0.95)' : 'rgba(255, 255, 255, 0.95)'};
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
   z-index: 10;
-  border-bottom: 1px solid ${props => props.isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `
 
 const ModalTitle = styled.h3`
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
@@ -84,8 +83,6 @@ const ResumeFrame = styled.iframe`
 `
 
 const Resume = ({ isOpen, onClose }) => {
-  const { isDarkMode } = useTheme()
-
   // Convert Google Docs URL to PDF viewer URL
   const googleDocsUrl = 'https://docs.google.com/document/d/15bDF246QcmNbmaW3y3dZNS4dctqcfOndJZ-oEYDXNtI/edit?usp=sharing'
   const pdfViewerUrl = googleDocsUrl.replace('/edit?usp=sharing', '/preview')
@@ -108,14 +105,13 @@ const Resume = ({ isOpen, onClose }) => {
           transition={{ duration: 0.3 }}
         >
           <ModalContent
-            isDarkMode={isDarkMode}
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <ModalHeader isDarkMode={isDarkMode}>
-              <ModalTitle isDarkMode={isDarkMode}>Mustafa Hasan - Resume</ModalTitle>
+            <ModalHeader>
+              <ModalTitle>Mustafa Hasan - Resume</ModalTitle>
               <ButtonGroup>
                 <ActionButton 
                   primary

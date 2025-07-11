@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { useTheme } from '../context/ThemeContext'
 
 const AboutSection = styled(motion.section)`
   padding: 4rem 0;
-  background-color: ${props => props.isDarkMode ? '#1a1a1a' : '#f8f9fa'};
-  transition: background-color 0.3s ease;
+  background-color: #f8f9fa;
 `
 
 const AboutContent = styled.div`
@@ -32,9 +30,8 @@ const AboutText = styled.div`
   p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: ${props => props.isDarkMode ? '#b2bec3' : '#636e72'};
+    color: #636e72;
     margin-bottom: 1.5rem;
-    transition: color 0.3s ease;
   }
 `
 
@@ -51,19 +48,16 @@ const AboutImage = styled(motion.div)`
 `
 
 const About = () => {
-  const { isDarkMode } = useTheme()
-
   return (
     <AboutSection
       id="about"
-      isDarkMode={isDarkMode}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
       <AboutContent>
-        <AboutText isDarkMode={isDarkMode}>
+        <AboutText>
           <h2>About Me</h2>
           <p>
             Hello! I'm a passionate software developer with a keen interest in creating

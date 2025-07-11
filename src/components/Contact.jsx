@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
-import { useTheme } from '../context/ThemeContext'
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 const ContactSection = styled(motion.section)`
   padding: 4rem 0;
-  background-color: ${props => props.isDarkMode ? '#23272f' : '#f5f6fa'};
+  background-color: #f5f6fa;
   min-height: 100vh;
-  transition: background-color 0.3s ease;
 `
 
 const ContactContent = styled.div`
@@ -30,17 +28,16 @@ const FormGroup = styled.div`
 `
 
 const Label = styled.label`
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   font-size: 1rem;
-  transition: color 0.3s ease;
 `
 
 const Input = styled.input`
   padding: 1rem;
-  background: ${props => props.isDarkMode ? '#2d3436' : '#f8f9fa'};
-  border: 1px solid ${props => props.isDarkMode ? '#636e72' : '#dfe6e9'};
+  background: #f8f9fa;
+  border: 1px solid #dfe6e9;
   border-radius: 4px;
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   font-size: 1rem;
   transition: all 0.3s ease;
 
@@ -52,10 +49,10 @@ const Input = styled.input`
 
 const TextArea = styled.textarea`
   padding: 1rem;
-  background: ${props => props.isDarkMode ? '#2d3436' : '#f8f9fa'};
-  border: 1px solid ${props => props.isDarkMode ? '#636e72' : '#dfe6e9'};
+  background: #f8f9fa;
+  border: 1px solid #dfe6e9;
   border-radius: 4px;
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   font-size: 1rem;
   min-height: 150px;
   resize: vertical;
@@ -90,7 +87,7 @@ const SocialLinks = styled.div`
 `
 
 const SocialLink = styled(motion.a)`
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   font-size: 1.5rem;
   transition: color 0.3s ease;
 
@@ -100,8 +97,6 @@ const SocialLink = styled(motion.a)`
 `
 
 const Contact = () => {
-  const { isDarkMode } = useTheme()
-
   const handleSubmit = (e) => {
     e.preventDefault()
     // Add your form submission logic here
@@ -110,7 +105,6 @@ const Contact = () => {
   return (
     <ContactSection
       id="contact"
-      isDarkMode={isDarkMode}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -128,16 +122,16 @@ const Contact = () => {
         </motion.h2>
         <ContactForm onSubmit={handleSubmit}>
           <FormGroup>
-            <Label isDarkMode={isDarkMode} htmlFor="name">Name</Label>
-            <Input isDarkMode={isDarkMode} type="text" id="name" name="name" required />
+            <Label htmlFor="name">Name</Label>
+            <Input type="text" id="name" name="name" required />
           </FormGroup>
           <FormGroup>
-            <Label isDarkMode={isDarkMode} htmlFor="email">Email</Label>
-            <Input isDarkMode={isDarkMode} type="email" id="email" name="email" required />
+            <Label htmlFor="email">Email</Label>
+            <Input type="email" id="email" name="email" required />
           </FormGroup>
           <FormGroup>
-            <Label isDarkMode={isDarkMode} htmlFor="message">Message</Label>
-            <TextArea isDarkMode={isDarkMode} id="message" name="message" required />
+            <Label htmlFor="message">Message</Label>
+            <TextArea id="message" name="message" required />
           </FormGroup>
           <SubmitButton
             type="submit"
@@ -149,8 +143,7 @@ const Contact = () => {
         </ContactForm>
         <SocialLinks>
           <SocialLink
-            isDarkMode={isDarkMode}
-            href="https://github.com/yourusername"
+            href="https://github.com/mustafah1702"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -5 }}
@@ -158,8 +151,7 @@ const Contact = () => {
             <FaGithub />
           </SocialLink>
           <SocialLink
-            isDarkMode={isDarkMode}
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/mustafa-hasan1702"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -5 }}
@@ -167,17 +159,7 @@ const Contact = () => {
             <FaLinkedin />
           </SocialLink>
           <SocialLink
-            isDarkMode={isDarkMode}
-            href="https://twitter.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ y: -5 }}
-          >
-            <FaTwitter />
-          </SocialLink>
-          <SocialLink
-            isDarkMode={isDarkMode}
-            href="mailto:your.email@example.com"
+            href="mailto:mustafahasan1702@gmail.com"
             whileHover={{ y: -5 }}
           >
             <FaEnvelope />

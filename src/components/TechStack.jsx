@@ -2,12 +2,10 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { FaReact, FaNodeJs, FaDatabase, FaGitAlt, FaDocker, FaGithub, FaLinux, FaCloud } from 'react-icons/fa'
 import { SiJavascript, SiPython, SiMongodb, SiTailwindcss, SiJenkins, SiJira } from 'react-icons/si'
-import { useTheme } from '../context/ThemeContext'
 
 const TechStackSection = styled(motion.section)`
   padding: 4rem 0;
   background-color: #fff;
-  transition: background-color 0.3s ease;
 `
 
 const TechStackContent = styled.div`
@@ -35,7 +33,7 @@ const TechGrid = styled.div`
 `
 
 const TechCard = styled(motion.div)`
-  background: ${props => props.isDarkMode ? '#2d3436' : '#ffffff'};
+  background: #ffffff;
   border-radius: 8px;
   padding: 2rem;
   text-align: center;
@@ -51,14 +49,11 @@ const TechIcon = styled.div`
 `
 
 const TechName = styled.h3`
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   font-size: 1.2rem;
-  transition: color 0.3s ease;
 `
 
 const TechStack = () => {
-  const { isDarkMode } = useTheme()
-  
   const programmingTech = [
     { name: 'Python', icon: <SiPython /> },
     { name: 'Java', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Java</span> },
@@ -91,7 +86,6 @@ const TechStack = () => {
   return (
     <TechStackSection
       id="tech-stack"
-      isDarkMode={isDarkMode}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -121,7 +115,6 @@ const TechStack = () => {
             {programmingTech.map((tech, index) => (
               <TechCard
                 key={index}
-                isDarkMode={isDarkMode}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.1 }}
@@ -129,7 +122,7 @@ const TechStack = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <TechIcon>{tech.icon}</TechIcon>
-                <TechName isDarkMode={isDarkMode}>{tech.name}</TechName>
+                <TechName>{tech.name}</TechName>
               </TechCard>
             ))}
           </TechGrid>
@@ -148,7 +141,6 @@ const TechStack = () => {
             {toolsTech.map((tech, index) => (
               <TechCard
                 key={index}
-                isDarkMode={isDarkMode}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.1 }}
@@ -156,7 +148,7 @@ const TechStack = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <TechIcon>{tech.icon}</TechIcon>
-                <TechName isDarkMode={isDarkMode}>{tech.name}</TechName>
+                <TechName>{tech.name}</TechName>
               </TechCard>
             ))}
           </TechGrid>

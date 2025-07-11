@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { useTheme } from '../context/ThemeContext'
-import ThemeToggle from './ThemeToggle'
 import { useState } from 'react'
 import Resume from './Resume'
 
@@ -10,12 +8,11 @@ const Header = styled(motion.header)`
   top: 0;
   left: 0;
   right: 0;
-  background: ${props => props.isDarkMode ? 'rgba(26, 26, 26, 0.95)' : 'rgba(255, 255, 255, 0.95)'};
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(5px);
   padding: 1rem 2rem;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
 `
 
 const Nav = styled.nav`
@@ -41,7 +38,7 @@ const NavLinks = styled.div`
 `
 
 const NavLink = styled(motion.a)`
-  color: ${props => props.isDarkMode ? '#ffffff' : '#2d3436'};
+  color: #2d3436;
   text-decoration: none;
   font-weight: 500;
   position: relative;
@@ -65,7 +62,6 @@ const NavLink = styled(motion.a)`
 `
 
 const Navbar = () => {
-  const { isDarkMode } = useTheme()
   const [isResumeOpen, setIsResumeOpen] = useState(false)
 
   const scrollToSection = (e, sectionId) => {
@@ -92,7 +88,6 @@ const Navbar = () => {
   return (
     <>
       <Header
-        isDarkMode={isDarkMode}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -101,7 +96,6 @@ const Navbar = () => {
           {/* <Logo>MH</Logo> */}
           <NavLinks>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#about" 
               onClick={(e) => scrollToSection(e, 'about')}
               whileHover={{ y: -2 }}
@@ -109,7 +103,6 @@ const Navbar = () => {
               About
             </NavLink>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#experience" 
               onClick={(e) => scrollToSection(e, 'experience')}
               whileHover={{ y: -2 }}
@@ -117,7 +110,6 @@ const Navbar = () => {
               Experience
             </NavLink>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#education" 
               onClick={(e) => scrollToSection(e, 'education')}
               whileHover={{ y: -2 }}
@@ -125,7 +117,6 @@ const Navbar = () => {
               Education
             </NavLink>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#projects" 
               onClick={(e) => scrollToSection(e, 'projects')}
               whileHover={{ y: -2 }}
@@ -133,7 +124,6 @@ const Navbar = () => {
               Projects
             </NavLink>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#tech-stack" 
               onClick={(e) => scrollToSection(e, 'tech-stack')}
               whileHover={{ y: -2 }}
@@ -141,7 +131,6 @@ const Navbar = () => {
               Tech Stack
             </NavLink>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#contact" 
               onClick={(e) => scrollToSection(e, 'contact')}
               whileHover={{ y: -2 }}
@@ -149,7 +138,6 @@ const Navbar = () => {
               Contact
             </NavLink>
             <NavLink 
-              isDarkMode={isDarkMode}
               href="#" 
               onClick={openResume}
               whileHover={{ y: -2 }}
@@ -158,7 +146,6 @@ const Navbar = () => {
               Resume
             </NavLink>
           </NavLinks>
-          <ThemeToggle />
         </Nav>
       </Header>
       <Resume isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
