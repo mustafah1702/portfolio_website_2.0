@@ -314,15 +314,16 @@ Error generating stack: `+o.message+`
   }
 `,Bx=E(L.div)`
   img {
+    margin-top: 70px;
     width: 100%;
-    max-width: 500px;
-    height: 400px;
+    max-width: 600px;
+    height: 500px;
     border-radius: 12px;
     box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.2);
     object-fit: cover;
     object-position: center;
   }
-`,$x=()=>y.jsx(Nx,{id:"about",initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:y.jsxs(Ox,{children:[y.jsxs(Fx,{children:[y.jsx("h2",{children:"About Me"}),y.jsx("p",{children:"Hello! I'm a passionate software developer with a keen interest in creating innovative solutions and building user-friendly applications. I love tackling complex problems and turning them into simple, beautiful, and intuitive solutions."}),y.jsx("p",{children:"When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing."})]}),y.jsx(Bx,{whileHover:{scale:1.05},transition:{duration:.3},children:y.jsx("img",{src:"/images/photo.jpeg",alt:"Profile"})})]})}),bx=E(L.section)`
+`,$x=()=>y.jsx(Nx,{id:"about",initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.6},children:y.jsxs(Ox,{children:[y.jsxs(Fx,{children:[y.jsx("h2",{children:"About Me"}),y.jsx("p",{children:"I'm a Computer Science graduate from Toronto Metropolitan University with a passion for building smart, scalable, and human-centered tech. Over the last few years, I’ve worked on projects and internships that span AI, automation, and full-stack development—including co-op roles at Canadian Tire and Magna International, and leading LLM training efforts at Outlier. These experiences have sharpened both my technical skills and my ability to work on real-world, high-impact solutions. This site highlights my projects, experience, and the tools I’ve picked up along the way."}),y.jsx("p",{children:"Outside of coding, I’m interested in how emerging technologies like machine learning and automation can be used to make everyday systems more efficient and accessible. I’m always learning, experimenting, and documenting the process as I go. Thanks for stopping by. Feel free to explore and don’t hesitate to reach out if you'd like to connect or talk tech."})]}),y.jsx(Bx,{whileHover:{scale:1.05},transition:{duration:.3},children:y.jsx("img",{src:"/images/photo.jpeg",alt:"Profile"})})]})}),bx=E(L.section)`
   padding: 4rem 0;
   background-color: #f8f9fa;
 `,Ux=E.div`
