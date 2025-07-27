@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import { FaUserTie, FaProjectDiagram} from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+
+
 
 const HeroSection = styled(motion.section)`
   min-height: 100vh;
@@ -202,9 +206,13 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <HighlightIcon>💼</HighlightIcon>
-            <span><strong>2+ Years Industry Experience</strong><br />
-            Worked at Canadian Tire, Magna International, and Outlier building real-world software.</span>
+            <HighlightIcon>
+              <FaUserTie />
+            </HighlightIcon>
+            <span>
+              <strong>2+ Years Industry Experience</strong><br />
+              Worked at Canadian Tire, Magna International, and Outlier building real-world software.
+            </span>
           </HighlightItem>
           
           <HighlightItem
@@ -212,7 +220,7 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.2 }}
           >
-            <HighlightIcon>🚀</HighlightIcon>
+            <HighlightIcon><FaProjectDiagram /> </HighlightIcon>
             <span><strong>Built AI & Automation Projects</strong><br />
             From self-driving cars to workflow bots—practical, innovative tech.</span>
           </HighlightItem>
@@ -222,7 +230,7 @@ const Hero = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.4 }}
           >
-            <HighlightIcon>📍</HighlightIcon>
+            <HighlightIcon><FaLocationDot />            </HighlightIcon>
             <span><strong>Based in Toronto, Canada</strong><br />
             Open to remote/hybrid/onsite roles across North America.</span>
           </HighlightItem>
