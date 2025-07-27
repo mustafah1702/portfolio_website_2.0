@@ -1,161 +1,139 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import { FaReact, FaNodeJs, FaDatabase, FaGitAlt, FaDocker, FaGithub, FaLinux, FaCloud } from 'react-icons/fa'
-import { SiJavascript, SiPython, SiMongodb, SiTailwindcss, SiJenkins, SiJira } from 'react-icons/si'
+import {
+  FaReact,
+  FaNodeJs,
+  FaDatabase,
+  FaGitAlt,
+  FaDocker,
+  FaGithub,
+  FaLinux,
+  FaCloud,
+  FaJava,
+  FaCode
+} from 'react-icons/fa'
+import {
+  SiJavascript,
+  SiPython,
+  SiMongodb,
+  SiTailwindcss,
+  SiJenkins,
+  SiJira,
+  SiHtml5,
+  SiCss3
+} from 'react-icons/si'
 
+// Section wrapper
 const TechStackSection = styled(motion.section)`
   padding: 4rem 0;
-  background-color: #fff;
+  background-color: #f5f6fa;
+  text-align: center;
 `
 
+// Content container
 const TechStackContent = styled.div`
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
 `
 
-const TechCategory = styled.div`
-  margin-bottom: 3rem;
-  
-  h3 {
-    color: #0984e3;
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-    text-align: center;
+// Flexible grid
+const TechGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+`
+
+// Each tech item
+const TechItem = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+`
+
+// Icon container
+const IconCircle = styled.div`
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.2);
   }
 `
 
-const TechGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-`
-
-const TechCard = styled(motion.div)`
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-`
-
-const TechIcon = styled.div`
-  font-size: 3rem;
-  color: #0984e3;
-  margin-bottom: 1rem;
-`
-
-const TechName = styled.h3`
+// Tech label
+const TechLabel = styled.span`
+  font-size: 0.9rem;
   color: #2d3436;
-  font-size: 1.2rem;
 `
 
-const TechStack = () => {
-  const programmingTech = [
-    { name: 'Python', icon: <SiPython /> },
-    { name: 'Java', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Java</span> },
-    { name: 'JavaScript', icon: <SiJavascript /> },
-    { name: 'React.js', icon: <FaReact /> },
-    { name: 'Node.js', icon: <FaNodeJs /> },
-    { name: 'C', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>C</span> },
-    { name: 'C++', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>C++</span> },
-    { name: 'SQL', icon: <FaDatabase /> },
-    { name: 'Assembly', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>ASM</span> },
-    { name: 'HTML', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>HTML</span> },
-    { name: 'CSS', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>CSS</span> },
-    { name: 'Tailwind', icon: <SiTailwindcss /> },
-    { name: 'MongoDB', icon: <SiMongodb /> }
-  ]
+const techItems = [
+  // Programming
+  { name: 'Python', icon: <SiPython />, color: '#3776AB' },
+  { name: 'Java', icon: <FaJava />, color: '#007396' },
+  { name: 'JavaScript', icon: <SiJavascript />, color: '#F7DF1E' },
+  { name: 'React', icon: <FaReact />, color: '#61DAFB' },
+  { name: 'Node.js', icon: <FaNodeJs />, color: '#3C873A' },
+  { name: 'C', icon: <FaCode />, color: '#A8B9CC' },
+  { name: 'C++', icon: <FaCode />, color: '#00599C' },
+  { name: 'SQL', icon: <FaDatabase />, color: '#4479A1' },
+  { name: 'HTML5', icon: <SiHtml5 />, color: '#E34F26' },
+  { name: 'CSS3', icon: <SiCss3 />, color: '#1572B6' },
+  { name: 'Tailwind', icon: <SiTailwindcss />, color: '#38B2AC' },
+  { name: 'MongoDB', icon: <SiMongodb />, color: '#47A248' },
+  // Tools
+  { name: 'Linux', icon: <FaLinux />, color: '#FCC624' },
+  { name: 'Git', icon: <FaGitAlt />, color: '#F05032' },
+  { name: 'GitHub', icon: <FaGithub />, color: '#181717' },
+  { name: 'Azure', icon: <FaCloud />, color: '#0078D4' },
+  { name: 'Jira', icon: <SiJira />, color: '#0052CC' },
+  { name: 'Jenkins', icon: <SiJenkins />, color: '#D24939' },
+  { name: 'Docker', icon: <FaDocker />, color: '#2496ED' },
+]
 
-  const toolsTech = [
-    { name: 'Linux/Unix', icon: <FaLinux /> },
-    { name: 'Git Bash', icon: <FaGitAlt /> },
-    { name: 'GitHub', icon: <FaGithub /> },
-    { name: 'Azure', icon: <FaCloud /> },
-    { name: 'Jira', icon: <SiJira /> },
-    { name: 'Jenkins', icon: <SiJenkins /> },
-    { name: 'Docker', icon: <FaDocker /> },
-    { name: 'DevOps', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>DevOps</span> },
-    { name: 'Scrum (Agile)', icon: <span style={{ fontSize: '2rem', fontWeight: 'bold' }}>Scrum</span> },
-    { name: 'SDLC', icon: <span style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>SDLC</span> }
-  ]
-
-  return (
-    <TechStackSection
-      id="tech-stack"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      <TechStackContent>
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          style={{ color: '#0984e3', textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' }}
-        >
-          Tech Stack
-        </motion.h2>
-        
-        <TechCategory>
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+const TechStack = () => (
+  <TechStackSection
+    id="tech-stack"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <TechStackContent>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ color: '#0984e3', marginBottom: '2rem', fontSize: '2.5rem' }}
+      >
+        My Tech Stack
+      </motion.h2>
+      <TechGrid>
+        {techItems.map((tech, idx) => (
+          <TechItem
+            key={idx}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300 }}
           >
-            Programming Languages & Frameworks
-          </motion.h3>
-          <TechGrid>
-            {programmingTech.map((tech, index) => (
-              <TechCard
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <TechIcon>{tech.icon}</TechIcon>
-                <TechName>{tech.name}</TechName>
-              </TechCard>
-            ))}
-          </TechGrid>
-        </TechCategory>
+            <IconCircle style={{ background: tech.color + '20' }}>
+              <span style={{ color: tech.color, fontSize: '1.5rem' }}>{tech.icon}</span>
+            </IconCircle>
+            <TechLabel>{tech.name}</TechLabel>
+          </TechItem>
+        ))}
+      </TechGrid>
+    </TechStackContent>
+  </TechStackSection>
+)
 
-        <TechCategory>
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            Software Tools & Practices
-          </motion.h3>
-          <TechGrid>
-            {toolsTech.map((tech, index) => (
-              <TechCard
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <TechIcon>{tech.icon}</TechIcon>
-                <TechName>{tech.name}</TechName>
-              </TechCard>
-            ))}
-          </TechGrid>
-        </TechCategory>
-      </TechStackContent>
-    </TechStackSection>
-  )
-}
-
-export default TechStack 
+export default TechStack

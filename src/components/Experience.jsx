@@ -114,6 +114,7 @@ const Position = styled.h4`
   font-size: 1rem;
   margin-bottom: 0.5rem;
   text-align: center;
+  white-space: pre-line;
 `
 
 const Date = styled.span`
@@ -371,7 +372,7 @@ const Experience = () => {
     {
       id: "outlier",
       company: "Outlier",
-      position: "LLM Training Squad Lead",
+      position: "LLM Training Squad Lead (Part-Time)",
       date: "January 2025 - Present",
       logo: "/images/outlier-logo.jpg",
       description: [
@@ -408,7 +409,7 @@ const Experience = () => {
     {
       id: "magna-coop",
       company: "Magna International",
-      position: "Software Engineering Co-op",
+      position: "Software Engineering\nCo-op",
       date: "September 2023 - August 2024",
       logo: "/images/magna-logo.png",
       description: [

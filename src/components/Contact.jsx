@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 const ContactSection = styled(motion.section)`
   padding: 4rem 0;
-  background-color: #f5f6fa;
+  background-color: #ffffff;
   min-height: 100vh;
 `
 

@@ -1,22 +1,43 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
+const gradPic = 'images/grad-pic.jpg';
 const EducationSection = styled(motion.section)`
-  padding: 4rem 0;
-  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 6rem 1rem;
+  background-image: url(${gradPic});
+  background-position: center 58%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
 `
 
 const EducationContent = styled.div`
+  position: relative;
+  z-index: 1;
   max-width: 800px;
   margin: 0 auto;
   padding: 0 2rem;
+  color: #ffffff;
+  text-align: left;
 `
 
 const EducationItem = styled(motion.div)`
   position: relative;
   padding-left: 2rem;
   margin-bottom: 3rem;
-  border-left: 2px solid #0984e3;
+  border-left: 2px solid rgba(255, 255, 255, 0.8);
 
   &:last-child {
     margin-bottom: 0;
@@ -30,29 +51,25 @@ const EducationItem = styled(motion.div)`
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #0984e3;
+    background: #ffffff;
   }
 `
 
 const EducationTitle = styled.h3`
-  color: #2d3436;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
 `
 
 const EducationSchool = styled.h4`
-  color: #0984e3;
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
 `
 
 const EducationDate = styled.span`
-  color: #636e72;
   font-size: 0.9rem;
 `
 
 const EducationDescription = styled.p`
-  color: #636e72;
   margin-top: 1rem;
   line-height: 1.6;
 `
@@ -64,7 +81,7 @@ const Education = () => {
       school: "Toronto Metropolitan University",
       date: "2020 - 2025",
       description: "Graduated with a 3.72 CGPA and Dean's Distinction List."
-    },
+    }
   ]
 
   return (
@@ -81,7 +98,7 @@ const Education = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ color: '#0984e3', marginBottom: '3rem', textAlign: 'center' }}
+          style={{ color: '#ffffff', marginBottom: '3rem', textAlign: 'center' }}
         >
           Education
         </motion.h2>
@@ -104,4 +121,4 @@ const Education = () => {
   )
 }
 
-export default Education 
+export default Education
