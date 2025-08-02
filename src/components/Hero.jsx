@@ -193,7 +193,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          I'm a versatile software developer with hands-on experience in AI, full-stack development, and automation—driven by a passion for building practical, scalable tech solutions.
+          I'm a full-stack software developer with hands-on experience in AI, end-to-end development, and automation—driven by a passion for building practical, scalable tech solutions.
         </HeroDescription>
         
         <HeroHighlights

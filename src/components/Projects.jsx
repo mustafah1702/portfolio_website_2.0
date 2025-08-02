@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { Tooltip } from 'react-tooltip'
+
 
 const ProjectsSection = styled.section`
   padding: 4rem 1rem;
@@ -86,41 +88,71 @@ const IconLink = styled.a`
   }
 `
 
+const StackRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+`
+
+const TechBadge = styled.span`
+  background: #e0e0e0;
+  color: #333;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+`
+
 const projectsData = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-stack platform with product filters, cart, and secure payments.",
-    image: "/images/project1.jpg",
-    github: "https://github.com/yourusername/ecommerce",
-    live: "https://ecommerce-demo.com"
+    title: "(De)Compressor",
+    description: "Full-stack platform using the Huffman Tree algorithm and recursion for efficient data encoding.",
+    image: "/images/Decompressor-image.png",
+    github: "https://github.com/mustafah1702/-De-Compressor",
+    live: "https://ecommerce-demo.com",
+    private: true,
+    techStack: ['Python','React', 'Node.js', 'Styled-Components', 'Framer-Motion']
   },
   {
-    title: "Task Management App",
-    description: "Real-time collaborative tasks, drag-and-drop boards, and notifications.",
-    image: "/images/project2.jpg",
-    github: "https://github.com/yourusername/task-manager",
-    live: "https://task-manager-demo.com"
+    title: "Sports Scheduler App",
+    description: "Mobile application for scheduling sports events using object-oriented programming and Android Studio.",
+    image: "/images/project2-image.png",
+    github: "https://github.com/shenceyang/Android-sports-event-scheduler",
+    live: "https://task-manager-demo.com",
+    private: false,
+    techStack: ['Java', 'JUnit', 'Android Studio', 'Firebase', 'Git']
+
   },
   {
     title: "AI Image Generator",
     description: "Generate art from text prompts using OpenAI's DALL·E API.",
     image: "/images/project3.jpg",
     github: "https://github.com/yourusername/ai-art",
-    live: "https://ai-art-demo.com"
+    live: "https://ai-art-demo.com",
+    private: false,
+    techStack: ['React', 'Node.js', 'Styled-Components', 'Framer-Motion']
+
   },
   {
     title: "Social Media Dashboard",
     description: "Analytics dashboard with charts and reports across platforms.",
     image: "/images/project4.jpg",
     github: "https://github.com/yourusername/social-dashboard",
-    live: "https://social-dashboard-demo.com"
+    live: "https://social-dashboard-demo.com",
+    private: false,
+    techStack: ['React', 'Node.js', 'Styled-Components', 'Framer-Motion']
+
   },
   {
     title: "Fitness Tracking App",
     description: "Mobile-first app with workout plans, logging, and GraphQL API.",
     image: "/images/project5.jpg",
     github: "https://github.com/yourusername/fitness-tracker",
-    live: "https://fitness-tracker-demo.com"
+    live: "https://fitness-tracker-demo.com",
+    private: false,
+    techStack: ['React', 'Node.js', 'Styled-Components', 'Framer-Motion']
+
   }
 ]
 
@@ -149,11 +181,25 @@ const Projects = () => (
             <div>
               <ProjectTitle>{proj.title}</ProjectTitle>
               <ProjectDescription>{proj.description}</ProjectDescription>
+              <StackRow>
+  {proj.techStack.map(t => (
+    <TechBadge key={t}>{t}</TechBadge>
+  ))}
+</StackRow>
             </div>
             <LinksRow>
-              <IconLink href={proj.github} target="_blank" rel="noopener noreferrer">
+              {proj.private ? (
+                <a data-tooltip-id="my-tooltip" data-tooltip-content="This GitHub repo is private">
+                  <IconLink as="span" disabled>
+                    <FaGithub color="black" />
+                  </IconLink>
+                  <Tooltip id="my-tooltip" />
+              </a>
+                ) : 
+                (<IconLink href={proj.github} target="_blank" rel="noopener noreferrer">
                 <FaGithub />
-              </IconLink>
+                </IconLink>)}
+              
               <IconLink href={proj.live} target="_blank" rel="noopener noreferrer">
                 <FaExternalLinkAlt />
               </IconLink>
