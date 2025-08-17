@@ -372,8 +372,8 @@ const Experience = () => {
     {
       id: "outlier",
       company: "Outlier",
-      position: "LLM Training Squad Lead (Part-Time)",
-      date: "January 2025 - Present",
+      position: "LLM Training Squad Lead (Contract)",
+      date: "January 2025 - July 2025",
       logo: "/images/outlier-logo.jpg",
       description: [
         "Led a team of 13 in training large language models (LLMs) for code generation tasks by crafting effective prompts and evaluating outputs through hands-on debugging in Python, Java, JavaScript, C#, C++, and SQL",
@@ -384,7 +384,7 @@ const Experience = () => {
     {
       id: "magna-contract",
       company: "Magna International",
-      position: "Software Engineering (Contract)",
+      position: "Full Stack Software Engineering (Contract)",
       date: "September 2024 - December 2024",
       logo: "/images/magna-logo.png",
       description: [
@@ -409,7 +409,7 @@ const Experience = () => {
     {
       id: "magna-coop",
       company: "Magna International",
-      position: "Software Engineering\nCo-op",
+      position: "Full Stack Software Engineering Co-op",
       date: "September 2023 - August 2024",
       logo: "/images/magna-logo.png",
       description: [

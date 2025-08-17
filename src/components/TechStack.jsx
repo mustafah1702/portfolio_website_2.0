@@ -23,6 +23,8 @@ import {
   SiHtml5,
   SiCss3
 } from 'react-icons/si'
+import { FaGolang } from "react-icons/fa6";
+
 
 // Section wrapper
 const TechStackSection = styled(motion.section)`
@@ -83,7 +85,8 @@ const techItems = [
   { name: 'JavaScript', icon: <SiJavascript />, color: '#F7DF1E' },
   { name: 'React', icon: <FaReact />, color: '#61DAFB' },
   { name: 'Node.js', icon: <FaNodeJs />, color: '#3C873A' },
-  { name: 'C', icon: <FaCode />, color: '#A8B9CC' },
+  {name: 'Golang', icon: <FaGolang/>, color: '#45bbbf' },
+  // { name: 'C', icon: <FaCode />, color: '#A8B9CC' },
   { name: 'C++', icon: <FaCode />, color: '#00599C' },
   { name: 'SQL', icon: <FaDatabase />, color: '#4479A1' },
   { name: 'HTML5', icon: <SiHtml5 />, color: '#E34F26' },

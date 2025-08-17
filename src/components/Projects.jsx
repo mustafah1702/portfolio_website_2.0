@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { GoVideo } from "react-icons/go";
 import { Tooltip } from 'react-tooltip'
 
 
@@ -106,11 +107,22 @@ const TechBadge = styled.span`
 
 const projectsData = [
   {
+    title: "HireUpp",
+    description: "Built multi-tenant SaaS ATS integrating resume scoring microservices to aid employers and applicants.",
+    image: "/images/project3-image.png",
+    github: "https://github.com/shenceyang/Android-sports-event-scheduler",
+    live: "https://task-manager-demo.com",
+    private: false,
+    techStack: ['Python', 'React', 'Node.js', 'Golang', 'FastAPI', 'OpenAPI', 'PostgreSQL', 'Docker', 'AWS', 'OAuth' ]
+
+  },
+  {
     title: "(De)Compressor",
     description: "Full-stack platform using the Huffman Tree algorithm and recursion for efficient data encoding.",
     image: "/images/Decompressor-image.png",
     github: "https://github.com/mustafah1702/-De-Compressor",
     live: "https://ecommerce-demo.com",
+    video: "https://youtu.be/Of5X22qS7K8",
     private: true,
     techStack: ['Python','React', 'Node.js', 'Styled-Components', 'Framer-Motion']
   },
@@ -124,26 +136,7 @@ const projectsData = [
     techStack: ['Java', 'JUnit', 'Android Studio', 'Firebase', 'Git']
 
   },
-  {
-    title: "AI Image Generator",
-    description: "Generate art from text prompts using OpenAI's DALL·E API.",
-    image: "/images/project3.jpg",
-    github: "https://github.com/yourusername/ai-art",
-    live: "https://ai-art-demo.com",
-    private: false,
-    techStack: ['React', 'Node.js', 'Styled-Components', 'Framer-Motion']
 
-  },
-  {
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard with charts and reports across platforms.",
-    image: "/images/project4.jpg",
-    github: "https://github.com/yourusername/social-dashboard",
-    live: "https://social-dashboard-demo.com",
-    private: false,
-    techStack: ['React', 'Node.js', 'Styled-Components', 'Framer-Motion']
-
-  },
   {
     title: "Fitness Tracking App",
     description: "Mobile-first app with workout plans, logging, and GraphQL API.",
@@ -203,6 +196,11 @@ const Projects = () => (
               <IconLink href={proj.live} target="_blank" rel="noopener noreferrer">
                 <FaExternalLinkAlt />
               </IconLink>
+              <IconLink href={proj.video} target="_blank" rel="noopener noreferrer">
+                <GoVideo  />
+              </IconLink>
+              
+
             </LinksRow>
           </CardContent>
         </ProjectCard>
